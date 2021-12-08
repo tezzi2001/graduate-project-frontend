@@ -1,32 +1,70 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
-  </div>
+  <v-app>
+    <v-app-bar app color="primary" dark>
+      <v-icon
+        color="secondary"
+        large
+      >
+        mdi-heart-multiple
+      </v-icon>
+      <h2 class="ml-4">Blood Donation App</h2>
+
+      <v-spacer></v-spacer>
+
+      <v-btn
+        @click="onClick"
+        :to="{ name: this.routeName }"
+        text
+      >
+        <span class="mr-2">{{ this.routeLabel }}</span>
+        <v-icon>{{ this.routeIcon }}</v-icon>
+      </v-btn>
+    </v-app-bar>
+
+    <v-main>
+      <router-view />
+    </v-main>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import restClient from "./api/restClient";
 
-#nav {
-  padding: 30px;
-}
+export default {
+  name: "App",
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+  computed: {
+    routeName() {
+      if (this.$store.state.token) {
+        return 'SignIn';
+      }
+      return this.$route.name === 'SignIn' ? 'SignUp' : 'SignIn';
+    },
+    routeLabel() {
+      if (this.$store.state.token) {
+        return 'Sign Out';
+      }
+      return this.$route.name === 'SignIn' ? 'Sign Up' : 'Sign In';
+    },
+    routeIcon() {
+      return this.$store.state.token ? 'mdi-logout' : 'mdi-login';
+    },
+  },
+  methods: {
+    onClick() {
+      if (this.$store.state.token) {
+        restClient
+          .post('/auth/logout', {}, { headers: { authorization: `Bearer ${this.$store.state.token}` } })
+          .then(() => this.$store.commit('deleteToken'));
+      }
+    },
+  },
+  mounted() {
+    if (localStorage.getItem('token')) {
+      this.$router.push('Home');
+    } else {
+      this.$router.push('SignIn');
+    }
+  },
+};
+</script>
