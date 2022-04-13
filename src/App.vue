@@ -12,6 +12,20 @@
       <v-spacer></v-spacer>
 
       <v-btn
+        v-if="isLoggedIn"
+        to="/home"
+        text
+      >
+        <span>Заявки</span>
+      </v-btn>
+      <v-btn
+        v-if="isLoggedIn"
+        to="/profile"
+        text
+      >
+        <span>Профіль</span>
+      </v-btn>
+      <v-btn
         @click="onClick"
         :to="{ name: this.routeName }"
         text
@@ -42,12 +56,15 @@ export default {
     },
     routeLabel() {
       if (this.$store.state.token) {
-        return 'Sign Out';
+        return 'Вийти';
       }
-      return this.$route.name === 'SignIn' ? 'Sign Up' : 'Sign In';
+      return this.$route.name === 'SignIn' ? 'Зареєструватися' : 'Увійти';
     },
     routeIcon() {
       return this.$store.state.token ? 'mdi-logout' : 'mdi-login';
+    },
+    isLoggedIn() {
+      return !!this.$store.state.token;
     },
   },
   methods: {
