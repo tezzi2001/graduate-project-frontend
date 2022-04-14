@@ -75,7 +75,6 @@ export default {
         .then(response => this.recipientApps = response.data);
     },
     changeSearch(event) {
-      console.log(event);
       if (event.userId) {
         this.search[event.type].userId = event.userId;
       }
