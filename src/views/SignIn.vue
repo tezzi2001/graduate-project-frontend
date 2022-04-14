@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <v-form ref="form" @submit.prevent="onSubmit">
-      <h2>Log In</h2>
+      <h2>Увійти</h2>
       <v-text-field
         v-model="email"
         :rules="emailRules"
@@ -12,11 +12,11 @@
         v-model="password"
         :rules="passwordRules"
         type="password"
-        label="Password"
+        label="Пароль"
         required
       ></v-text-field>
       <v-btn type="submit" color="primary" dark>
-        Log In
+        Увійти
       </v-btn>
     </v-form>
   </div>
@@ -30,11 +30,11 @@ export default {
   data() {
     return {
       emailRules: [
-        v => !!v || 'E-mail is required',
-        v => /^\S+@\S+\.\S+$/.test(v) || 'E-mail must be valid',
+        v => !!v || 'E-mail необхідний',
+        v => /^\S+@\S+\.\S+$/.test(v) || 'E-mail має бути дійсним',
       ],
       passwordRules: [
-        v => !!v || 'Password is required',
+        v => !!v || 'Пароль необхідний',
       ],
       email: '',
       password: '',

@@ -4,18 +4,18 @@
       <v-col>
         <h1 class="align-center">
           <CreateAppModal @app-created="loadRecipientApplications()" :type-index="0"/>
-          Recipient Applications:
+          Заявки реципієнтів:
         </h1>
-        <Card v-for="recipientApp in recipientApps" :key="recipientApp.id" :data="recipientApp" :date-delim="'on'"/>
-        <p class="align-center" v-if="recipientApps.length === 0">There is no recipient applications</p>
+        <Card v-for="recipientApp in recipientApps" :key="recipientApp.id" :data="recipientApp" :date-delim="'на'"/>
+        <p class="align-center" v-if="recipientApps.length === 0">Заявки реципієнтів відсутні.</p>
       </v-col>
       <v-col>
         <h1 class="align-center">
           <CreateAppModal @app-created="loadDonorApplications()" :type-index="1"/>
-          Donor Applications:
+          Заявки донорів:
         </h1>
-        <Card v-for="donorApp in donorApps" :key="donorApp.id" :data="donorApp" :date-delim="'to'" />
-        <p class="align-center" v-if="donorApps.length === 0">There is no donor applications</p>
+        <Card v-for="donorApp in donorApps" :key="donorApp.id" :data="donorApp" :date-delim="'до'" />
+        <p class="align-center" v-if="donorApps.length === 0">Заявки донорів відсутні.</p>
       </v-col>
     </v-row>
   </v-container>

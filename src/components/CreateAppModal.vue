@@ -18,14 +18,14 @@
 
     <v-card>
       <v-card-title class="text-h5 grey lighten-2">
-        Create {{ types[this.typeIndex].name }} Application
+        Створити заявку {{ types[this.typeIndex].name }}
       </v-card-title>
 
       <v-form @submit.prevent="onSubmit">
         <v-card-text class="spacing-vertical">
           <h3 class="align-center spacing-bottom">{{ types[typeIndex].dateFieldName }}</h3>
           <v-row justify="center">
-            <v-date-picker v-model="picker"></v-date-picker>
+            <v-date-picker v-model="picker" locale="uk-UA"></v-date-picker>
           </v-row>
         </v-card-text>
 
@@ -62,14 +62,14 @@ export default {
       show: false,
       types: [
         {
-          name: 'Recipient',
+          name: 'реципієнта',
           path: '/api/addRecipientApplication',
-          dateFieldName: 'On Date:',
+          dateFieldName: 'На дату:',
         },
         {
-          name: 'Donor',
+          name: 'донора',
           path: '/api/addDonorApplication',
-          dateFieldName: 'Expires At:',
+          dateFieldName: 'Спливає:',
         },
       ],
       picker: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),

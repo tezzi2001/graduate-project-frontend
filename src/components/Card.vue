@@ -4,10 +4,10 @@
       {{ data.name }} - {{ data.region }} {{ dateDelim }} {{ formatDate }}
     </v-card-title>
     <v-card-subtitle>
-      Blood Group: {{ data.bloodGroup }}{{ data.rh }}
+      Група крові: {{ data.bloodGroup }}{{ data.rh }}
     </v-card-subtitle>
     <v-card-actions>
-      <p class="spacing-left">Show details</p>
+      <p class="spacing-left">Показати деталі</p>
       <v-spacer></v-spacer>
       <v-btn
         icon
@@ -21,7 +21,7 @@
         <v-divider></v-divider>
         <v-card-text>
           <p>{{ data.age }} y.o., {{ data.sex }}</p>
-          <p>email: {{ data.email }}, phone: {{ data.phone }}</p>
+          <p>e-mail: {{ data.email }}, телефон: {{ data.phone }}</p>
         </v-card-text>
       </div>
     </v-expand-transition>

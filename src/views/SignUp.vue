@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <v-form ref="form" @submit.prevent="onSubmit">
-      <h2>Sign Up</h2>
+      <h2>Зареєструватися</h2>
       <v-text-field
         v-model="email"
         :rules="emailRules"
@@ -9,56 +9,44 @@
         required
       ></v-text-field>
       <v-text-field
-        v-model="password"
-        :rules="passwordRules"
-        type="password"
-        label="Password"
+        v-model="phone"
+        :rules="phoneRules"
+        label="Телефон"
         required
       ></v-text-field>
       <v-text-field
         v-model="name"
         :rules="nameRules"
-        label="Name"
+        label="І'мя Прізвище"
+        required
+      ></v-text-field>
+      <v-text-field
+        v-model="password"
+        :rules="passwordRules"
+        type="password"
+        label="Пароль"
         required
       ></v-text-field>
       <v-text-field
         v-model="region"
         :rules="regionRules"
-        label="Region"
-        required
-      ></v-text-field>
-      <v-text-field
-        v-model="sex"
-        :rules="sexRules"
-        label="Sex"
-        required
-      ></v-text-field>
-      <v-text-field
-        v-model="phone"
-        :rules="phoneRules"
-        label="Phone"
-        required
-      ></v-text-field>
-      <v-text-field
-        v-model="age"
-        :rules="ageRules"
-        label="Age"
+        label="Служба крові"
         required
       ></v-text-field>
       <v-text-field
         v-model="rh"
         :rules="rhRules"
-        label="RH"
+        label="Резус"
         required
       ></v-text-field>
       <v-text-field
         v-model="groupNumber"
         :rules="groupNumberRules"
-        label="Blood Group Number"
+        label="Група крові"
         required
       ></v-text-field>
       <v-btn type="submit" color="primary" dark>
-        Sign Up
+        Зареєструватися
       </v-btn>
     </v-form>
   </div>
@@ -72,45 +60,35 @@ export default {
   data() {
     return {
       emailRules: [
-        v => !!v || 'E-mail is required',
-        v => /^\S+@\S+\.\S+$/.test(v) || 'E-mail must be valid',
+        v => !!v || 'E-mail необхідний',
+        v => /^\S+@\S+\.\S+$/.test(v) || 'E-mail має бути дійсним',
       ],
       passwordRules: [
-        v => !!v || 'Password is required',
+        v => !!v || 'Пароль необхідний',
       ],
       nameRules: [
-        v => !!v || 'Name is required',
+        v => !!v || 'Імя та Прізвище необхідні',
       ],
       regionRules: [
-        v => !!v || 'Region is required',
+        v => !!v || 'Служба крові необхідна',
       ],
       rhRules: [
-        v => !!v || 'RH is required!',
-        v => v === '+' || v === '-' || 'RH should be - or +',
+        v => !!v || 'Резус необхідний!',
+        v => v === '+' || v === '-' || 'Резус має бути - або +',
       ],
       groupNumberRules: [
-        v => !!v || 'Blood Group Number is required!',
-        v => (1 <= v && v <= 4) || 'Blood Group Number should be in range 1...4!',
-      ],
-      sexRules: [
-        v => !!v || 'Sex is required!',
-        v => v === 'Male' || v === 'Female' || 'Sex must be a Male or a Female!',
-      ],
-      ageRules: [
-        v => !!v || 'Age is required!',
-        v => !isNaN(v) || 'Age must be a number!',
+        v => !!v || 'Група крові необхідна!',
+        v => (1 <= v && v <= 4) || 'Група крові має бути в діапазоні 1...4!',
       ],
       phoneRules: [
-        v => !!v || 'Phone is required!',
-        v => /^\+380\d{9}$/.test(v) || 'Phone must be valid. Format: +380XXXXXXXXX',
+        v => !!v || 'Телефон необхідний!',
+        v => /^\+380\d{9}$/.test(v) || 'Телефон має бути дійсним. Формат: +380XXXXXXXXX',
       ],
       email: '',
       password: '',
       name: '',
       region: '',
-      sex: '',
       phone: '',
-      age: '',
       rh: '',
       groupNumber: '',
     }
@@ -126,9 +104,7 @@ export default {
         password: this.password,
         name: this.name,
         region: this.region,
-        sex: this.sex,
         phone: this.phone,
-        age: this.age,
         rh: this.rh,
         groupNumber: this.groupNumber,
       })
