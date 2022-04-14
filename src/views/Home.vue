@@ -97,7 +97,10 @@ export default {
         groupNumber: 0,
         region: '',
       };
-      this.loadRecipientApplications();
+      this[`load${this.capitalize(event.type)}Applications`]();
+    },
+    capitalize(s) {
+      return s[0].toUpperCase() + s.slice(1);
     },
   },
 };
