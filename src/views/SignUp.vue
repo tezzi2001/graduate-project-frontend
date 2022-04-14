@@ -27,24 +27,24 @@
         label="Пароль"
         required
       ></v-text-field>
-      <v-text-field
+      <v-combobox
         v-model="region"
         :rules="regionRules"
+        :items="regionList"
         label="Служба крові"
-        required
-      ></v-text-field>
-      <v-text-field
+      ></v-combobox>
+      <v-combobox
         v-model="rh"
         :rules="rhRules"
+        :items="rhList"
         label="Резус"
-        required
-      ></v-text-field>
-      <v-text-field
+      ></v-combobox>
+      <v-combobox
         v-model="groupNumber"
         :rules="groupNumberRules"
+        :items="groupList"
         label="Група крові"
-        required
-      ></v-text-field>
+      ></v-combobox>
       <v-btn type="submit" color="primary" dark>
         Зареєструватися
       </v-btn>
@@ -91,6 +91,17 @@ export default {
       phone: '',
       rh: '',
       groupNumber: '',
+      regionList: [],
+      rhList: [
+        '+',
+        '-',
+      ],
+      groupList: [
+        1,
+        2,
+        3,
+        4,
+      ],
     }
   },
   methods: {
@@ -113,6 +124,14 @@ export default {
       })
       .catch(error => console.log(error));
     },
+    pullRegions() {
+      restClient
+        .get('/api/regions', {}, { headers: { authorization: `Bearer ${this.$store.state.token}` } })
+        .then(response => this.regionList = response.data);
+    },
+  },
+  mounted() {
+    this.pullRegions();
   },
 };
 </script>

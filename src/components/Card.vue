@@ -20,7 +20,7 @@
       <div v-show="show">
         <v-divider></v-divider>
         <v-card-text>
-          <p>{{ data.age }} y.o., {{ data.sex }}</p>
+          <p>{{ data.age }} років, {{ data.sex }}</p>
           <p>e-mail: {{ data.email }}, телефон: {{ data.phone }}</p>
         </v-card-text>
       </div>
