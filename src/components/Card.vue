@@ -20,7 +20,7 @@
       <div v-show="show">
         <v-divider></v-divider>
         <v-card-text>
-          <p>{{ data.age }} років, {{ data.sex }}</p>
+          <p>{{ data.age }}{{ ageWord }}{{ data.sex }}{{ trailingComa }}</p>
           <p>e-mail: {{ data.email }}, телефон: {{ data.phone }}</p>
         </v-card-text>
       </div>
@@ -64,7 +64,25 @@ export default {
     formatDate() {
       return new Date(this.data.dateTime).toLocaleDateString("en-US");
     },
-  }
+    ageWord() {
+      switch (this.data.age) {
+        case '':
+        case null:
+          return '';
+        case 1:
+          return ' рік, ';
+        case 2:
+        case 3:
+        case 4:
+          return ' роки, ';
+        default:
+          return ' років, ';
+      }
+    },
+    trailingComa() {
+      return this.data.sex ? ',' : '';
+    },
+  },
 };
 </script>
 

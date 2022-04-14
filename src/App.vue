@@ -7,7 +7,7 @@
       >
         mdi-heart-multiple
       </v-icon>
-      <h2 class="ml-4">Blood Donation App</h2>
+      <h2 class="ml-4">Додаток для Служб Крові</h2>
 
       <v-spacer></v-spacer>
 
